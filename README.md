@@ -8,14 +8,10 @@
   - [📸 Demo](#-demo)
   - [🛠️ Tech Stack](#️-tech-stack)
   - [📦 Installation](#-installation)
-  - [🚀 Scripts](#-scripts)
+  - [⚙️ Configuration](#️-configuration)
+  - [📜 Scripts](#-scripts)
   - [📁 Project Structure](#-project-structure)
-  - [📐 Code Style](#-code-style)
-  - [🔍 Tests](#-tests)
-  - [🌐 Live Site](#-live-site)
-  - [📌 To Do](#-to-do)
-  - [🧪 Known Issues](#-known-issues)
-  - [🤝 Contributing](#-contributing)
+  - [🧪 Testing](#-testing)
   - [📄 Licence](#-licence)
   - [🙋 FAQ](#-faq)
   - [👤 Author](#-author)
@@ -24,34 +20,29 @@
 
 ## 🤓 Overview
 
-A lightweight demonstration of how to implement field-level rate limiting in a GraphQL API using `graphql-rate-limit-directive` and Apollo Server. Built with ES modules and a modular file structure.
+A lightweight demonstration of **field-level rate limiting** in a GraphQL API using `graphql-rate-limit-directive` and **Apollo Server**, built with **ES modules** and a modular structure.
 
-This GraphQL server applies per-field rate limits using IP address and auth headers. It is ideal for:
-
-- Prototyping request throttling in a Node.js backend.
-- Demonstrating use of Apollo Server with custom directives.
-- Serving as a base template for future GraphQL projects.
+Originally created as a proof of concept for exploring GraphQL rate limiting strategies.
+Both `apollo-server` and `rate-limiter-flexible` are now out of date but retained here for historical reference.
 
 ---
 
 ## 📸 Demo
 
-No live demo currently. Example output on startup:
+Run locally to see output such as:
 
 ```bash
 Apollo Server started at http://localhost:4000 🚀
 ```
 
-Example blocked query after exceeding rate limit:
+Example response after exceeding a rate limit:
 
 ```json
 {
   "errors": [
     {
       "message": "Too many requests, please try again in 15 seconds.",
-      "extensions": {
-        "code": "RATE_LIMITED"
-      }
+      "extensions": { "code": "RATE_LIMITED" }
     }
   ]
 }
@@ -61,12 +52,12 @@ Example blocked query after exceeding rate limit:
 
 ## 🛠️ Tech Stack
 
-- **GraphQL Server**: Apollo Server
-- **Rate Limiting**: graphql-rate-limit-directive
-- **Schema Tools**: @graphql-tools/schema
-- **Runtime**: Node.js (ESM)
-- **Environment Config**: dotenv
-- **Console Styling**: chalk
+- **GraphQL Server:** Apollo Server *(deprecated)*
+- **Rate Limiting:** graphql-rate-limit-directive *(proof of concept)*
+- **Limiter Library:** rate-limiter-flexible *(deprecated)*
+- **Schema Tools:** @graphql-tools/schema
+- **Runtime:** Node.js (ESM)
+- **Config:** dotenv
 
 ---
 
@@ -81,12 +72,22 @@ echo "PORT=4000" > .env
 
 ---
 
-## 🚀 Scripts
+## ⚙️ Configuration
 
-| Command        | Description                                |
-| -------------- | ------------------------------------------ |
-| `npm start`    | Start the GraphQL server on defined port   |
-| `npm run test` | Run automated Jest tests for rate limiting |
+This project requires a `.env` file with the following variable:
+
+| Variable | Default | Description             |
+| -------- | ------- | ----------------------- |
+| `PORT`   | `4000`  | Port used by the server |
+
+---
+
+## 📜 Scripts
+
+| Command        | Description                            |
+| -------------- | -------------------------------------- |
+| `npm start`    | Start the GraphQL server               |
+| `npm run test` | Run Jest tests for rate limiting logic |
 
 ---
 
@@ -95,83 +96,32 @@ echo "PORT=4000" > .env
 ```bash
 src/
 ├── __tests__/
-│   └── rateLimit.test.js  # Jest tests for rate limiting behaviour
+│   └── rateLimit.test.js   # Jest tests
 ├── directives/
-│   └── rateLimit.js       # Directive setup and key generator
+│   └── rateLimit.js        # Directive setup
 ├── schema/
-│   ├── index.js           # TypeDefs + directive + schema
-│   └── resolvers.js       # Resolvers for queries
+│   ├── index.js            # TypeDefs + schema + directive
+│   └── resolvers.js        # Query resolvers
 ├── utils/
-│   └── context.js         # Extract IP and auth from request
-├── server.js              # Apollo server config
-├── index.js               # Entry point, loads .env and starts server
+│   └── context.js          # Extract IP/auth from request
+├── server.js               # Apollo Server config
+└── index.js                # Entry point
 ```
 
 ---
 
-## 📐 Code Style
+## 🧪 Testing
 
-This project uses:
+Tests use **Jest** to validate rate limiting behaviour:
 
-- ES Modules (`type: "module"` in `package.json`)
-- Semantic console logging with `chalk`
-- `.env` for configuration
-- Modular file organisation by concern
+- First query → ✅ allowed
+- Second query → 🚫 rate limited
 
----
-
-## 🔍 Tests
-
-Automated tests are written using **Jest** and cover basic rate limiting behaviour.
-
-The tests simulate multiple GraphQL queries and check that:
-
-- The first request is **allowed**.
-- The second request is **rate limited** and returns the expected error message.
-
-To run the tests:
+Run tests:
 
 ```bash
 npm run test
 ```
-
-Example output:
-
-```bash
-PASS  src/__tests__/rateLimit.test.js
-  Rate limiting
-    ✓ should allow the first request (xx ms)
-    ✓ should rate limit the second request (xx ms)
-```
-
----
-
-## 🌐 Live Site
-
-*Not currently deployed — run locally using the instructions above.*
-
----
-
-## 📌 To Do
-
-- [x] Modularise monolithic GraphQL setup
-- [x] Switch to ES modules
-- [x] Add example rate limit tests (for example, with `curl`, Postman, or automated)
-- [ ] Add optional Redis integration for distributed rate limiting
-- [ ] Add logging middleware for introspection
-
----
-
-## 🧪 Known Issues
-
-- IP detection via `req.connection.remoteAddress` may be unreliable behind proxies (consider `X-Forwarded-For` in production)
-- Rate limiting applies uniformly to all clients by IP and auth; per-user JWT support is not yet implemented
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
 
 ---
 
@@ -183,17 +133,24 @@ MIT © 2025 Karl Horning
 
 ## 🙋 FAQ
 
-**Q: Why am I seeing a "PORT variable not provided" error during startup?**
-A: Ensure your `.env` file contains a `PORT=4000` or similar line.
+**Why am I seeing a "PORT variable not provided" error?**
+Ensure `.env` includes a `PORT=4000` line.
 
-**Q: How can I customise rate limits per field?**
-A: Use the `@rateLimit(limit: X, duration: Y)` directive on specific fields in the schema.
+**How do I customise limits per field?**
+Add `@rateLimit(limit: X, duration: Y)` to that field in the schema.
 
-**Q: Why are my queries getting blocked?**
-A: You're likely exceeding the `@rateLimit` values based on your IP and auth header.
+**Why are queries being blocked?**
+You're exceeding the configured rate limit for your IP/auth header.
 
-**Q: Can I disable rate limiting on some fields?**
-A: Yes, simply omit the `@rateLimit` directive on that field.
+**Can I disable rate limiting on some fields?**
+Yes — omit the directive on that field.
+
+**Are there any known limitations?**
+Yes:
+
+- IP detection via `req.connection.remoteAddress` may fail behind proxies.
+- Rate limiting applies per IP/auth — per-user JWT logic is not implemented.
+- Dependencies (`apollo-server`, `rate-limiter-flexible`) are deprecated and not recommended for production use.
 
 ---
 
