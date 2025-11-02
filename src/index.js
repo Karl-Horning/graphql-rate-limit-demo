@@ -1,8 +1,5 @@
 import { config } from "dotenv";
-import chalk from "chalk";
 import server from "./server.js";
-
-const { red, green, yellow } = chalk;
 
 // Load environment variables from .env file
 config();
@@ -13,7 +10,7 @@ config();
  * @throws {Error} If PORT variable is not provided
  */
 if (!process.env.PORT) {
-    console.error(red("Please provide a PORT variable in the .env file."));
+    console.error("Please provide a PORT variable in the .env file.");
     process.exit(1);
 }
 
@@ -24,12 +21,12 @@ if (!process.env.PORT) {
  */
 process.on("SIGINT", async () => {
     try {
-        console.log(yellow("Received SIGINT. Closing Apollo Server..."));
+        console.log("Received SIGINT. Closing Apollo Server...");
         await server.stop();
-        console.log(green("Apollo Server closed."));
+        console.log("Apollo Server closed.");
         process.exit(0);
     } catch (error) {
-        console.error(red("Error during graceful shutdown:", error));
+        console.error("Error during graceful shutdown:", error);
         process.exit(1);
     }
 });
