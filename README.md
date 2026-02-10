@@ -16,16 +16,12 @@
   - [FAQ](#faq)
   - [👤 Author](#-author)
 
----
-
 ## Overview
 
 A lightweight demonstration of **field-level rate limiting** in a GraphQL API using `graphql-rate-limit-directive` and **Apollo Server**, built with **ES modules** and a modular structure.
 
 Originally created as a proof of concept for exploring GraphQL rate limiting strategies.
 Both `apollo-server` and `rate-limiter-flexible` are now out of date but retained here for historical reference.
-
----
 
 ## Demo
 
@@ -48,8 +44,6 @@ Example response after exceeding a rate limit:
 }
 ```
 
----
-
 ## Tech Stack
 
 - **GraphQL Server:** Apollo Server *(deprecated)*
@@ -58,8 +52,6 @@ Example response after exceeding a rate limit:
 - **Schema Tools:** @graphql-tools/schema
 - **Runtime:** Node.js (ESM)
 - **Config:** dotenv
-
----
 
 ## Installation
 
@@ -70,8 +62,6 @@ npm install
 echo "PORT=4000" > .env
 ```
 
----
-
 ## Configuration
 
 This project requires a `.env` file with the following variable:
@@ -80,16 +70,12 @@ This project requires a `.env` file with the following variable:
 | -------- | ------- | ----------------------- |
 | `PORT`   | `4000`  | Port used by the server |
 
----
-
 ## Scripts
 
 | Command        | Description                            |
 | -------------- | -------------------------------------- |
 | `npm start`    | Start the GraphQL server               |
 | `npm run test` | Run Jest tests for rate limiting logic |
-
----
 
 ## Project Structure
 
@@ -108,8 +94,6 @@ src/
 └── index.js                # Entry point
 ```
 
----
-
 ## Testing
 
 Tests use **Jest** to validate rate limiting behaviour:
@@ -123,13 +107,9 @@ Run tests:
 npm run test
 ```
 
----
-
 ## 📄 Licence
 
 MIT © 2025 Karl Horning
-
----
 
 ## FAQ
 
@@ -151,8 +131,6 @@ Yes:
 - IP detection via `req.connection.remoteAddress` may fail behind proxies.
 - Rate limiting applies per IP/auth — per-user JWT logic is not implemented.
 - Dependencies (`apollo-server`, `rate-limiter-flexible`) are deprecated and not recommended for production use.
-
----
 
 ## 👤 Author
 
