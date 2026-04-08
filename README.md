@@ -2,19 +2,17 @@
 
 ## Table of Contents
 
-- [GraphQL Rate Limit Demo](#graphql-rate-limit-demo)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Demo](#demo)
-  - [Tech Stack](#tech-stack)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-  - [Scripts](#scripts)
-  - [Project Structure](#project-structure)
-  - [Testing](#testing)
-  - [📄 Licence](#-licence)
-  - [FAQ](#faq)
-  - [👤 Author](#-author)
+- [Overview](#overview)
+- [Demo](#demo)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Scripts](#scripts)
+- [Project Structure](#project-structure)
+- [Testing](#testing)
+- [📄 Licence](#-licence)
+- [FAQ](#faq)
+- [👤 Author](#-author)
 
 ## Overview
 
@@ -109,7 +107,7 @@ npm run test
 
 ## 📄 Licence
 
-MIT © 2025 Karl Horning
+MIT © 2023 Karl Horning
 
 ## FAQ
 
