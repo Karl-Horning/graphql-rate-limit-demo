@@ -5,7 +5,8 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index",
     "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "repository": {
