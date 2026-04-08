@@ -1,27 +1,10 @@
 # GraphQL Rate Limit Demo
 
-## Table of Contents
+A proof of concept for **field-level rate limiting** in a GraphQL API, built with `graphql-rate-limit-directive` and **Apollo Server**.
 
-- [GraphQL Rate Limit Demo](#graphql-rate-limit-demo)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Demo](#demo)
-  - [Tech Stack](#tech-stack)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-  - [Scripts](#scripts)
-  - [Project Structure](#project-structure)
-  - [Testing](#testing)
-  - [📄 Licence](#-licence)
-  - [FAQ](#faq)
-  - [👤 Author](#-author)
+Built for a legacy EdTech platform that had opened its SCORM endpoints to external content providers. The worry was that third-party integrations could hammer those endpoints — the target was **1 request per minute per client**. This POC validated the approach against the existing stack before any production changes were made.
 
-## Overview
-
-A lightweight demonstration of **field-level rate limiting** in a GraphQL API using `graphql-rate-limit-directive` and **Apollo Server**, built with **ES modules** and a modular structure.
-
-Originally created as a proof of concept for exploring GraphQL rate limiting strategies.
-Both `apollo-server` and `rate-limiter-flexible` are now out of date but retained here for historical reference.
+`apollo-server` and `rate-limiter-flexible` match what was in use at the time (2023) and are kept as-is for historical reference.
 
 ## Demo
 
@@ -101,15 +84,13 @@ Tests use **Jest** to validate rate limiting behaviour:
 - First query → allowed
 - Second query → rate limited
 
+The schema is configured to 15 seconds for local testing. The intended production limit was 1 request per minute (`duration: 60`).
+
 Run tests:
 
 ```bash
 npm run test
 ```
-
-## 📄 Licence
-
-MIT © 2025 Karl Horning
 
 ## FAQ
 
@@ -132,6 +113,6 @@ Yes:
 - Rate limiting applies per IP/auth — per-user JWT logic is not implemented.
 - Dependencies (`apollo-server`, `rate-limiter-flexible`) are deprecated and not recommended for production use.
 
-## 👤 Author
+## Licence
 
-Made with ❤️ by [Karl Horning](https://github.com/Karl-Horning)
+MIT © 2023 [Karl Horning](https://github.com/Karl-Horning)

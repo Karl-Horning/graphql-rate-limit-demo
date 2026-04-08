@@ -12,7 +12,7 @@ import resolvers from "./resolvers.js";
  */
 const typeDefs = [
     rateLimitDirectiveTypeDefs,
-    `# Allow each field to be queried once every 15 seconds
+    `# Rate limit: 1 request per 15 seconds (reduced from 60s for local testing; production intent was 1 request per minute)
       type Query @rateLimit(limit: 1, duration: 15) {
         books: [Book!]
         quote: String
