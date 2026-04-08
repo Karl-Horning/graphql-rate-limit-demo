@@ -6,10 +6,9 @@ import { rateLimitDirective } from "graphql-rate-limit-directive";
  *
  * @param {any} parent - The parent resolver result (unused).
  * @param {any} args - The arguments passed to the field (unused).
- * @param {any} context - GraphQL execution context (unused).
- * @param {Object} info - Field resolver info object containing request metadata.
- * @param {string} info.ipAddress - IP address of the client.
- * @param {string|null} info.authorization - Authorisation token from headers, if available.
+ * @param {Object} context - GraphQL execution context containing request metadata.
+ * @param {string} context.ipAddress - IP address of the client.
+ * @param {string|null} context.authorization - Authorisation token from headers, if available.
  * @returns {string} A unique string key to identify the requester.
  */
 const keyGenerator = (_, __, ___, { ipAddress, authorization }) =>
