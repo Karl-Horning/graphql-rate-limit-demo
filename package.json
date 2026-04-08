@@ -1,16 +1,17 @@
 {
   "name": "graphql-rate-limit-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A proof of concept for field-level rate limiting in a GraphQL API using graphql-rate-limit-directive and Apollo Server.",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index",
     "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Karl-Horning/graphql-rate-limit.git"
+    "url": "git+https://github.com/Karl-Horning/graphql-rate-limit-demo.git"
   },
   "keywords": [
     "apollo-server",
@@ -31,9 +32,9 @@
   "author": "Karl Horning",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Karl-Horning/graphql-rate-limit/issues"
+    "url": "https://github.com/Karl-Horning/graphql-rate-limit-demo/issues"
   },
-  "homepage": "https://github.com/Karl-Horning/graphql-rate-limit#readme",
+  "homepage": "https://github.com/Karl-Horning/graphql-rate-limit-demo#readme",
   "dependencies": {
     "@graphql-tools/schema": "^10.0.2",
     "@graphql-tools/utils": "^10.0.12",

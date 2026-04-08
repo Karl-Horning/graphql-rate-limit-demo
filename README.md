@@ -58,6 +58,7 @@ This project requires a `.env` file with the following variable:
 | Command        | Description                            |
 | -------------- | -------------------------------------- |
 | `npm start`    | Start the GraphQL server               |
+| `npm run dev`  | Start with auto-restart (nodemon)      |
 | `npm run test` | Run Jest tests for rate limiting logic |
 
 ## Project Structure

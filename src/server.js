@@ -16,6 +16,4 @@ const server = new ApolloServer({
     context,
 });
 
-
-
 export default server;

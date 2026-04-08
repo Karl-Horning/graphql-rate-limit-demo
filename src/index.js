@@ -1,8 +1,5 @@
-import { config } from "dotenv";
+import "dotenv/config";
 import server from "./server.js";
-
-// Load environment variables from .env file
-config();
 
 /**
  * Ensure that the PORT variable is provided in the .env file
