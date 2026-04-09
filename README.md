@@ -1,8 +1,10 @@
 # GraphQL Rate Limit Demo
 
+> **Note:** This project is preserved for historical reference. The dependencies are deprecated and are not recommended for production use.
+
 A proof of concept for **field-level rate limiting** in a GraphQL API, built with `graphql-rate-limit-directive` and **Apollo Server**.
 
-Built for a legacy EdTech platform that had opened its SCORM endpoints to external content providers. The worry was that third-party integrations could hammer those endpoints — the target was **1 request per minute per client**. This POC validated the approach against the existing stack before any production changes were made.
+Built for a legacy EdTech platform that had opened its SCORM (a standard format for e-learning content) endpoints to external content providers. The concern was that third-party integrations could send excessive requests to those endpoints — the target was **1 request per minute per client**. This POC validated the approach against the existing stack before any production changes were made.
 
 `apollo-server` and `rate-limiter-flexible` match what was in use at the time (2023) and are kept as-is for historical reference.
 
@@ -59,7 +61,7 @@ This project requires a `.env` file with the following variable:
 | -------------- | -------------------------------------- |
 | `npm start`    | Start the GraphQL server               |
 | `npm run dev`  | Start with auto-restart (nodemon)      |
-| `npm run test` | Run Jest tests for rate limiting logic |
+| `npm test`     | Run Jest tests for rate limiting logic |
 
 ## Project Structure
 
@@ -90,7 +92,7 @@ The schema is configured to 15 seconds for local testing. The intended productio
 Run tests:
 
 ```bash
-npm run test
+npm test
 ```
 
 ## FAQ
