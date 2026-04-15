@@ -116,6 +116,6 @@ Yes:
 - Rate limiting applies per IP/auth — per-user JWT logic is not implemented.
 - Dependencies (`apollo-server`, `rate-limiter-flexible`) are deprecated and not recommended for production use.
 
-## Licence
+## License
 
-MIT © 2023 [Karl Horning](https://github.com/Karl-Horning)
+Released under the [MIT License](./LICENSE) by [Karl Horning](https://github.com/Karl-Horning).
