@@ -1,6 +1,6 @@
 # GraphQL Rate Limit Demo
 
-> **Note:** This project is preserved for historical reference. The dependencies are deprecated and are not recommended for production use.
+> **Archived.** This proof-of-concept was successfully shipped to production. It is kept here as a portfolio reference only; no further changes are planned.
 
 A proof of concept for **field-level rate limiting** in a GraphQL API, built with `graphql-rate-limit-directive` and **Apollo Server**.
 
